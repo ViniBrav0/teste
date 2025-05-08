@@ -8,7 +8,7 @@ const receitas = [
   nome: "Feijoada",
   tempoPreparo: "2 horas",
   porcoes: 8,
-  imagem: 'https://i.pinimg.com/236x/80/b5/44/80b544b4f56e66fde329b8cf8279e3b3.jpg',
+  imagem: 'https://www.receiteria.com.br/wp-content/uploads/feijoada-1.jpg',
   ingredientes: [
    "1kg de feijão preto", "500g de carne seca", "300g de linguiça",
    "200g de costelinha", "2 laranjas", "Couve a gosto", "Arroz para acompanhar"
@@ -24,7 +24,7 @@ const receitas = [
   nome: "Strogonoff de Frango",
   tempoPreparo: "40 minutos",
   porcoes: 6,
-  imagem: 'https://i.pinimg.com/236x/ae/fe/5d/aefe5d91ac74b5f9d95c38f1a97cfc38.jpg',
+  imagem: 'https://www.receiteria.com.br/wp-content/uploads/strogonoff-de-frango.jpg',
   ingredientes: [
    "1kg de peito de frango", "2 caixas de creme de leite",
    "2 colheres de extrato de tomate", "2 colheres de ketchup",
@@ -41,7 +41,10 @@ const receitas = [
   nome: "Bolo de Chocolate",
   tempoPreparo: "50 minutos",
   porcoes: 12,
-  imagem: 'https://i.pinimg.com/236x/ef/d3/0b/efd30bd087d55dc9b51cc77507893531.jpg',
+  imagem: 'https://www.receiteria.com.br/wp-content/uploads/bolo-de-chocolate-simples.jpg
+  ',
+
+
   ingredientes: [
    "4 ovos", "2 xícaras de açúcar", "2 xícaras de farinha",
    "1 xícara de chocolate em pó", "1 xícara de óleo",
@@ -60,14 +63,18 @@ export default function InicioScreen({ navigation }) {
   <FlatList
    data={receitas}
    keyExtractor={item => item.id.toString()}
+   contentContainerStyle={{ padding: 16 }}
    renderItem={({ item }) => (
     <TouchableOpacity onPress={() => navigation.navigate('ReceitaScreen', { receita: item })}>
-     <Card style={{ margin: 10 }}>
-      <Card.Cover source={{ uri: item.imagem }} />
-      <Card.Content>
-       <Title>{item.nome}</Title>
-       <Paragraph>Tempo: {item.tempoPreparo}</Paragraph>
-       <Paragraph>Porções: {item.porcoes}</Paragraph>
+     <Card style={{ marginBottom: 16, borderRadius: 12, elevation: 4 }}>
+      <Card.Cover
+       source={{ uri: item.imagem }}
+       style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+      />
+      <Card.Content style={{ paddingVertical: 12 }}>
+       <Title style={{ fontSize: 20, color: '#333' }}>{item.nome}</Title>
+       <Paragraph style={{ color: '#555', marginTop: 4 }}>⏱️ Tempo: {item.tempoPreparo}</Paragraph>
+       <Paragraph style={{ color: '#555' }}>🍽️ Porções: {item.porcoes}</Paragraph>
       </Card.Content>
      </Card>
     </TouchableOpacity>
