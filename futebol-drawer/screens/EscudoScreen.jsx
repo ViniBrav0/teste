@@ -1,32 +1,32 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native'
+import { StyleSheet, Text, View, FlatList, Image } from 'react-native'
 import React from 'react'
 import { Card } from 'react-native-paper'
 
 export default function EscudoScreens() {
   const times = [
     {
-      nome: "Flamengo",
-      escudo: "https://i.pinimg.com/236x/16/db/d2/16dbd20fd582e025dc54cc3fbd1839c9.jpg",
-      fundacao: "15 de novembro de 1895",
+      nome: "Fluminense",
+      escudo: "https://logodetimes.com/times/fluminense/logo-fluminense-4096.png",
+      fundacao: "21 de julho de 1902",
       estadio: "Maracanã",
-      mascote: "Urubu",
-      cores: ["Vermelho", "Preto"]
+      mascote: "Guerreiro",
+      cores: ["Verde", "Branco", "Grená"]
     }
   ]
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={times}   
         renderItem={({ item }) => (
-          <Card>
-            <Card.Cover source={{ uri: item.escudo }} />
+          <Card style={styles.card}>
+            <Image source={{ uri: item.escudo }} style={styles.escudo} />
             <Card.Content>
-              <Text>{item.nome}</Text>
-              <Text>Fundação: {item.fundacao}</Text>
-              <Text>Estádio: {item.estadio}</Text>
-              <Text>Mascote: {item.mascote}</Text>
-              <Text>Cores: {item.cores.join(', ')}</Text>
+              <Text style={styles.nome}>{item.nome}</Text>
+              <Text style={styles.texto}>Fundação: {item.fundacao}</Text>
+              <Text style={styles.texto}>Estádio: {item.estadio}</Text>
+              <Text style={styles.texto}>Mascote: {item.mascote}</Text>
+              <Text style={styles.texto}>Cores: {item.cores.join(', ')}</Text>
             </Card.Content>
           </Card>
         )}
@@ -34,3 +34,34 @@ export default function EscudoScreens() {
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f0f3f0',
+    padding: 16
+  },
+  card: {
+    marginBottom: 20,
+    borderRadius: 12,
+    backgroundColor: '#ffffff',
+    elevation: 4
+  },
+  escudo: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'contain',
+    marginTop: 16
+  },
+  nome: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 8,
+    color: '#006633'
+  },
+  texto: {
+    fontSize: 16,
+    marginTop: 4,
+    color: '#333'
+  }
+})
